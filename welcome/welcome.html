@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Dr EMS Web App</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
+    
+  </head>
+
+  <body ng-controller="WelcomeCtrl">
+
+   <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#/welcome">Home</a>
+          <a class="blog-nav-item " href="#/addPost">Add Post</a>
+          <a class="blog-nav-item " style="cursor:pointer;" ng-click="logout();">Logout</a>
+        </nav>
+      </div>
+    </div>
+   <div class="container">
+      <div class="page-header">
+        <h1>Dr. EMS App</h1>
+      </div>
+      <p class="lead">Welcome home!!</p>
+      <p></p>
+	  
+	 <div class="list-group" ng-repeat="article in articles" ng-click="hiddenDiv = !hiddenDiv"{{$index}} >
+		<a class="list-group-item active">
+		<h4 class="list-group-item-heading moveLeft">#{{article.ambulance_ID}} - Ambulance 276</h4>
+		<h5 class="black moveDown">John Smith (678-383-0004)</h5>
+		<h3 class = "list-group-item-heading invisible"> so </h3>
+		
+		<h4 class="black time moveTime">13:52</h4>
+			<h4 ng-show = "hiddenDiv" class="list-group-item-heading">POOOOPP</h4>
+			<table ng-show = "hiddenDiv">
+                    <tr>
+                        <td class="title">AGE</td>
+                        <td class="attr">{{article.Age}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">SEX</td>
+                        <td class="attr">{{article.Gender}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">MOI</td>
+                        <td class="attr">Recording</td>
+                    </tr>
+                    <tr>
+                        <td class="title">GCS</td>
+                        <td>
+                            <td class="attr">M: {{article.GCS_Motor}}</td>
+                            <td class="attr">V: {{article.GCS_Verbal}}</td>
+                            <td class="attr">E: {{article.GCS_Eye}}</td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">HR</td>
+                        <td class="attr">{{article.Heart_Rate}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">BP</td>
+                        <td class="attr">{{article.Systolic_BP}}/{{article.Diastolic_BP}}</td>
+                    </tr>
+                </table>
+			<!--<h4 ng-show = "hiddenDiv" class="list-group-item-heading">{{article.emailId}}</h4>
+			<h4 ng-show = "hiddenDiv" class="list-group-item-heading">{{article.title}}</h4>
+			<p ng-show = "hiddenDiv" class="list-group-item-text">{{article.post}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Age: ' + article.Age}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'GCS: ' + article.GCS}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'GCS Eye: ' + article.GCS_Eye}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'GCS Motor: ' + article.GCS_Motor}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv" >{{'GCS Verbal: ' + article.GCS_Verbal}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Gender: ' + article.Gender}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Heart Rate: ' + article.Heart_Rate}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Systolic BP: ' + article.Systolic_BP}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Diastolic BP: ' + article.Diastolic_BP}}</p>
+			<p class="list-group-item-text" ng-show="hiddenDiv">{{'Additional Information: ' + article.Additional_Information}}</p>
+			<button class="btn btn-xs btn-warning deleteButton"  ng-click= "confirmDelete($index)"  data-target="#deleteModal" >DELETE</button>
+	  <button class = "btn btn-xs btn-warning ambulanceButton" data-target = "#bodyModal" ng-click = "viewBody()" ng-mousedown = "showBody($index)">View Attachments</button>-->
+		</a>
+	</div>
+			<button ng-click = "fixThisShit($index)">SSOSOSOS</button>
+			<audio controls="controls" autobuffer="autobuffer" >
+			<source ng-show="fixThisShit($index)" ng-src="{{poopy}}">
+			</audio>-->
+			
+      
+	  
+    </span>
+		</a>
+		
+		</div>
+	</div>
+ 
+        
+    </a>
+</div>
+
+<!--Non-existent Edit button-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="editModalLabel">Update Post</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Title:</label>
+            <input type="text" class="form-control" ng-model="postToUpdate.title" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Post:</label>
+            <textarea class="form-control" id="message-text" ng-model="postToUpdate.post"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="update()">Publish</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Delete button-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this post forever !!</h4>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="deletePost()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--View Body button-->
+<div class="modal fade" id="bodyModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" style="color:green;" id="bodyModalLabel">Body Drawings</h4>
+      </div>
+     <div class ="bodyModalCSS model-content">
+			<img ng-src="{{'welcome/Front_Body.png'}}"class="img-rounded move" >
+			<img ng-src="data:image/JPEG;base64,{{bodyImageFront}}"  width="163" height="342"  class="img-rounded invert move" >
+			<img ng-src="{{'welcome/Back_Body.png'}}"  class="img-rounded moveBack" width="163" height="342">
+			<img ng-src="data:image/PNG;base64,{{bodyImageBack}}"  width="163" height="342"  class="img-rounded invert moveBack">
+	 </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"></p>
+      </div>
+    </footer>
+
+</body></html>
